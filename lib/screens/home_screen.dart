@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/screens/avatar/avatar_selection.dart';
+import 'package:skill_guru/screens/name_select/views.dart';
+import 'package:skill_guru/widget/base_layout.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -17,7 +18,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Navigate to another screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NameSelect()),
+                );
               },
               child: Text('Get Started'),
             ),
