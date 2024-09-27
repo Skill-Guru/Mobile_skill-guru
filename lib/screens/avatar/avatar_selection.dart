@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/constants/color_constants.dart';
 
 class AvatarSelectionScreen extends StatefulWidget {
   @override
@@ -22,7 +23,6 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
     'assets/images/9.jpg',
   ];
 
-  @override
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
@@ -52,8 +52,8 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: selectedAvatar == avatarList[index]
-                              ? Colors.blue // Si cet avatar est sélectionné, la bordure est bleue
-                              : Colors.grey, // Sinon, elle est grise
+                              ? ColorConstants.accentuationColor // Si cet avatar est sélectionné, la bordure est bleue
+                              : ColorConstants.backgroundColor, // Sinon, elle est grise
                           width: 3,
                         ),
                       ),
