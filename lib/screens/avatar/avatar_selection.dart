@@ -56,7 +56,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: selectedAvatar == avatarList[index]
-                              ? ColorConstants.accentuationColor // Si cet avatar est sélectionné, la bordure est bleue
+                              ? ColorConstants.primaryColor // Si cet avatar est sélectionné, la bordure est bleue
                               : ColorConstants.backgroundColor, // Sinon, elle est grise
                           width: 3,
                         ),
@@ -69,19 +69,44 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
             ),
           ),
           
-          // Avatar sélectionné affiché en bas de l'écran
+          // Avatar sélectionné affiché en bas de l'écran avec la flèche
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Séparation des éléments
               children: [
-                Text(
-                  'Votre Avatar : ${widget.userName}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                // Avatar sélectionné à gauche
+                Column(
+                  children: [
+                    Text(
+                      'Votre Avatar : ${widget.userName}',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), 
+                    ),
+                    SizedBox(height: 10),
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage(selectedAvatar), // Affichage de l'avatar sélectionné
+                    ),
+                  ],
                 ),
-                SizedBox(height: 10),
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage(selectedAvatar), // Affichage de l'avatar sélectionné
+
+                // Bouton flèche à droite
+                FloatingActionButton(
+                  onPressed: () {
+                    // Naviguer vers la page récapitulative
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => RecapPage(
+                    //       avatarPath: selectedAvatar,
+                    //       username: widget.userName,
+                    //     ),
+                    //   ),
+                    // );
+                  },
+                  backgroundColor: ColorConstants.secondaryColor, // Couleur de fond du bouton
+                  child: Icon(Icons.arrow_forward, color: ColorConstants.backgroundColor, ),
+                  splashColor: ColorConstants.accentuationColor, // Icône de flèche
                 ),
               ],
             ),
