@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/screens/avatar/avatar_selection.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen'),
-      ),
-      body: Center(
-        child: Column(
+    return BaseLayout(
+      title: 'Accueil', // Titre de l'AppBar pour cette page
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -39,6 +37,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 void main() {
   runApp(MaterialApp(
