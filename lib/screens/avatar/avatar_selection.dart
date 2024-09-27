@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AvatarSelectionScreen extends StatefulWidget {
+  final String userName; // Stocker le nom de l'utilisateur
+
+  AvatarSelectionScreen({required this.userName}); // Constructeur pour initialiser le nom de l'utilisateur
+
   @override
   _AvatarSelectionScreenState createState() => _AvatarSelectionScreenState();
 }
@@ -71,7 +75,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
             child: Column(
               children: [
                 Text(
-                  'Votre Avatar :',
+                  'Votre Avatar : ${widget.userName}',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
