@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_guru/screens/avatar/avatar_selection.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -21,6 +22,16 @@ class HomeScreen extends StatelessWidget {
                 // Navigate to another screen
               },
               child: Text('Get Started'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AvatarSelectionScreen()),
+            );
+              },
+              child: Text('Avatar'),
             ),
           ],
         ),
