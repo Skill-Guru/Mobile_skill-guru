@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_guru/widget/base_layout.dart';
 
 class AvatarSelectionScreen extends StatefulWidget {
   @override
@@ -22,12 +23,11 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
   ];
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sélectionner un avatar'),
-      ),
-      body: Column(
+    return BaseLayout(
+      title: "Sélection de l'avatar", // Titre de l'AppBar pour cette page
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Liste d'avatars à sélectionner
