@@ -18,14 +18,18 @@ class BaseLayout extends StatelessWidget {
       ),
       backgroundColor: ColorConstants.backgroundColor, // Couleur de fond de la page
       body: Padding(
-        padding: const EdgeInsets.all(50.0), // Padding de 50
+        padding: const EdgeInsets.all(30.0), // Padding de 30
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.asset(
-                'assets/images/logo.png', // Logo en haut de chaque page
-                height: 100, // Taille du logo
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/logo.png', // Logo en haut de chaque page
+                  height: 75, // Taille du logo
+                  width: 75,  // Largeur du logo pour garder le cercle
+                  fit: BoxFit.cover, // Assure que l'image remplit le cercle
+                ),
               ),
             ),
             SizedBox(height: 20), // Espace entre le logo et le contenu
