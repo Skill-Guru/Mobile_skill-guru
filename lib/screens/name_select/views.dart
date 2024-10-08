@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_guru/constants/color_constants.dart';
 import 'package:skill_guru/screens/avatar/avatar_selection.dart';
 import 'package:skill_guru/screens/home_screen.dart';
 import 'package:skill_guru/widget/base_layout.dart';
@@ -25,14 +26,44 @@ class NameSelect extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AvatarSelectionScreen(
-                      userName: _nameController.text, // Passer le nom ici
+                String userName = _nameController.text;
+                
+                // Validation : non vide et contient uniquement des lettres et des chiffres
+                if (userName.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Le pseudo ne peut pas être vide',
+                        style: TextStyle(
+                          color: ColorConstants.primaryColor,
+                          fontWeight: FontWeight.w500,
+                          ),
+                      ),
+                      backgroundColor: ColorConstants.accentuationColor,
                     ),
-                  ),
-                );
+                  );
+                } else if (!_isAlphanumeric(userName)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(
+                      'Le pseudo doit contenir uniquement des lettres ou des chiffres',
+                      style: TextStyle(
+                        color: ColorConstants.primaryColor,
+                        fontWeight: FontWeight.w500,),
+                      ),
+                      backgroundColor: ColorConstants.accentuationColor,
+                    ),
+                  );
+                } else {
+                  // Si tout est OK, naviguer vers la sélection d'avatar
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AvatarSelectionScreen(
+                        userName: _nameController.text, // Passer le nom ici
+                      ),
+                    ),
+                  );
+                }
               },
               child: Text('Valider'),
               style: ElevatedButton.styleFrom(
@@ -45,6 +76,11 @@ class NameSelect extends StatelessWidget {
         ),
       ),
     );
+  }
+  // Fonction qui vérifie si une chaîne contient uniquement des lettres et des chiffres
+  bool _isAlphanumeric(String str) {
+    final alphanumeric = RegExp(r'^[a-zA-Z0-9]+$');
+    return alphanumeric.hasMatch(str);
   }
 }
 
