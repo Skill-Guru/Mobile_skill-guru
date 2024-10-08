@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_guru/screens/before_quizz/quizz_page.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/constants/color_constants.dart';
 
@@ -94,15 +95,15 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     // Naviguer vers la page récapitulative
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => RecapPage(
-                    //       avatarPath: selectedAvatar,
-                    //       username: widget.userName,
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuizzPage(
+                          avatarPath: selectedAvatar,
+                          username: widget.userName,
+                        ),
+                      ),
+                    );
                   },
                   backgroundColor: ColorConstants.secondaryColor, // Couleur de fond du bouton
                   child: Icon(Icons.arrow_forward, color: ColorConstants.backgroundColor, ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/constants/color_constants.dart';
 
-
 class BaseLayout extends StatelessWidget {
   final Widget child;
   final String title;
@@ -20,7 +19,8 @@ class BaseLayout extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(30.0), // Padding de 30
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center, // Centre le contenu verticalement
+          crossAxisAlignment: CrossAxisAlignment.center, // Centre le contenu horizontalement
           children: [
             Center(
               child: ClipOval(
@@ -34,7 +34,9 @@ class BaseLayout extends StatelessWidget {
             ),
             SizedBox(height: 20), // Espace entre le logo et le contenu
             Expanded(
-              child: child, // Contenu spécifique de chaque page
+              child: Center(
+                child: child, // Contenu spécifique de chaque page centré
+              ),
             ),
           ],
         ),

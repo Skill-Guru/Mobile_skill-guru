@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/screens/name_select/views.dart';
 import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/widget/custom_button.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -11,18 +12,18 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Welcome to Skill Guru!',
+              'Bienvenue sur Skill Guru!',
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
+              text: 'Commencer',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => NameSelect()),
                 );
               },
-              child: Text('Get Started'),
             ),
             SizedBox(height: 20),
           ],
