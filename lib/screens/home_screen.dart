@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/screens/qrcode/scanner.dart';
+import 'package:skill_guru/screens/quizz/views.dart';
 
 
 void main() => runApp(const MyApp());
@@ -31,6 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Si le résultat est déjà disponible, naviguer automatiquement vers StartQuizz
+    if (_result != null) {
+      Future.microtask(() {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => StartQuizz(result: _result!),
+          ),
+        );
+      });
+    }
+
     return Scaffold(
       body: Center(
         child: Column(
