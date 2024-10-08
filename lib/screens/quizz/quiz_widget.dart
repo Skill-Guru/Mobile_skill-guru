@@ -24,9 +24,6 @@ class QuizWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text('Résultat du scan : $result'),
-
-        SizedBox(height: 20),
 
         // Afficher la question en fonction de l'index courant
         Text(
@@ -52,15 +49,13 @@ class QuizWidget extends StatelessWidget {
 
         ElevatedButton(
           onPressed: () {
-            if (selectedOption.isNotEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Réponse sélectionnée : $selectedOption')),
-              );
-              onValidate(); // Passe à la question suivante
-            } else {
+            if(!selectedOption.isNotEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Veuillez sélectionner une réponse.')),
               );
+            }
+            else{
+              onValidate();
             }
           },
           child: Text('Valider la réponse'),
