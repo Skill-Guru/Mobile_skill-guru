@@ -29,7 +29,7 @@ class QuizWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         TimerWidget(
-          initialTime: 30, // Temps pour chaque question
+          initialTime: 300000000, // Temps pour chaque question
           onTimeUp: onTimeUp, // Que faire quand le temps est écoulé
         ),
         SizedBox(height: 20),
@@ -43,15 +43,33 @@ class QuizWidget extends StatelessWidget {
         SizedBox(height: 20),
 
         // Affichage des options de réponses
+        // Affichage des options de réponses
         ...quizzes[0].questions[currentQuestionIndex].options.map<Widget>((option) {
-          return RadioListTile<String>(
-            title: Text(option),
-            value: option,
-            activeColor: ColorConstants.primaryColor,
-            groupValue: selectedOption,
-            onChanged: (String? value) {
-              onOptionSelected(value!); // Gère la sélection d'une option
-            },
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0), // Espace vertical entre les boutons
+            child: SizedBox(
+              width: double.infinity, // Prend toute la largeur
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: selectedOption == option ? ColorConstants.accentuationColor : ColorConstants.primaryColor,
+                  padding: EdgeInsets.symmetric(vertical: 15.0), // Padding vertical du bouton
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Bordures arrondies
+                  ),
+                ),
+                onPressed: () {
+                  onOptionSelected(option); // Gère la sélection d'une option
+                },
+                child: Text(
+                  option,
+                  style: TextStyle(
+                    color: Colors.white, // Couleur du texte
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           );
         }).toList(),
 
