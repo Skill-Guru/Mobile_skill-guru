@@ -1,66 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:skill_guru/screens/qrcode/scanner.dart';
-import 'package:skill_guru/screens/quizz/views.dart';
+import 'package:skill_guru/screens/name_select/views.dart';
+import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/widget/custom_button.dart';
 
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String? _result;
-
-  void setResult(String result) {
-    setState(() => _result = result);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    // Si le résultat est déjà disponible, naviguer automatiquement vers StartQuizz
-    if (_result != null) {
-      Future.microtask(() {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => StartQuizz(result: _result!),
-          ),
-        );
-      });
-    }
-
-    return Scaffold(
-      body: Center(
-        child: Column(
+    return BaseLayout(
+      title: 'Accueil',
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(_result ?? 'No result'),
-            ElevatedButton(
-              child: const Text('Scan QR code'),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => QrCodeScanner(setResult: setResult),
-                ),
-              ),
+          children: <Widget>[
+            Text(
+              'Welcome to Skill Guru!',
+              style: TextStyle(fontSize: 24),
             ),
+            SizedBox(height: 20),
+            CustomButton(
+              text: 'Get started',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NameSelect()),
+                );
+              },
+            ),
+            SizedBox(height: 20),
           ],
         ),
-      ),
-    );
+      );
   }
 }

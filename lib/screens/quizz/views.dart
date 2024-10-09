@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/screens/quizz/quiz_model.dart';
 
-import 'quiz_service.dart'; // Pour récupérer les données du quiz
-import 'quiz_widget.dart'; // Pour les widgets personnalisés
+import 'quiz_service.dart';
+import 'quiz_widget.dart';
 
 class StartQuizz extends StatefulWidget {
   final String result;
@@ -16,7 +16,7 @@ class StartQuizz extends StatefulWidget {
 class _StartQuizzState extends State<StartQuizz> {
   List<Quiz> quizzes = [];
   String selectedOption = '';
-  int currentQuestionIndex = 0; // Ajoute une variable pour suivre la question actuelle
+  int currentQuestionIndex = 0;
 
   @override
   void initState() {

@@ -96,13 +96,13 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                   onPressed: () {
                     // Naviguer vers la page récapitulative
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => QuizzPage(
-                          avatarPath: selectedAvatar,
-                          username: widget.userName,
-                        ),
-                      ),
+                       context,
+                       MaterialPageRoute(
+                         builder: (context) => QuizScreen(
+                            userName: widget.userName,
+                            selectedAvatar: selectedAvatar,
+                         )
+                       ),
                     );
                   },
                   backgroundColor: ColorConstants.secondaryColor, // Couleur de fond du bouton

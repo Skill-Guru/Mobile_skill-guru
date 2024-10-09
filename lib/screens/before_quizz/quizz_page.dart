@@ -2,36 +2,67 @@ import 'package:flutter/material.dart';
 import 'package:skill_guru/constants/color_constants.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/widget/custom_button.dart';
+import 'package:skill_guru/screens/quizz/views.dart';
+import 'package:skill_guru/screens/qrcode/scanner.dart';
 
-class QuizzPage extends StatelessWidget {
-  final String avatarPath;
-  final String username;
+class QuizScreen extends StatefulWidget {
+  final String selectedAvatar;
+  final String userName;
 
-  QuizzPage({required this.avatarPath, required this.username});
+  const QuizScreen({
+    required this.selectedAvatar,
+    required this.userName,
+    super.key,
+  });
+
+  @override
+  State<QuizScreen> createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
+  String? _result;
+
+  // Function to update the result of the quiz
+  void setResult(String result) {
+    setState(() {
+      _result = result;
+    });
+
+    // If result is not null, navigate to the StartQuizz screen
+    if (_result != null && _result!.isNotEmpty) {
+      Future.microtask(() {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => StartQuizz(result: _result!),
+          ),
+        );
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
-      title: "Résumé", // Titre de l'AppBar pour cette page
+      title: "Résumé",
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centrer verticalement
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Avatar sélectionné
+            // Display the selected avatar
             ClipOval(
               child: Image.asset(
-                avatarPath,
+                widget.selectedAvatar,
                 height: 100,
                 width: 100,
                 fit: BoxFit.cover,
               ),
             ),
             SizedBox(height: 20),
-            
-            // Afficher le pseudo de l'utilisateur
+
+            // Display the username of the user
             Text(
-              username, // Pseudo de l'utilisateur
+              widget.userName,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -39,14 +70,22 @@ class QuizzPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40),
-            
-            // Bouton pour démarrer le quizz
+
+            // Display the scanned result if available
+            Text(
+              _result ?? 'No result',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 20),
+
+            // Custom button to scan the QR code
             CustomButton(
-              text: 'Commencer le Quiz', // Texte du bouton
-              onPressed: () {
-                // Action à effectuer lorsqu'on appuie sur le bouton
-                //Navigator.pushNamed(context, '/quizPage');
-              },
+              text: 'Scan QR code',
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => QrCodeScanner(setResult: setResult), // Start QR code scanner
+                ),
+              ),
             ),
           ],
         ),
