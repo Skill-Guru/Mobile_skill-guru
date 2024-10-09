@@ -33,7 +33,7 @@ class _QuizScreenState extends State<QuizScreen> {
       Future.microtask(() {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => StartQuizz(result: _result!),
+            builder: (context) => StartQuizz(result: _result!, username: widget.userName, avatarPath: widget.selectedAvatar),
           ),
         );
       });
@@ -47,7 +47,7 @@ class _QuizScreenState extends State<QuizScreen> {
       Future.microtask(() {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => StartQuizz(result: _result!),
+            builder: (context) => StartQuizz(result: _result!, username: widget.userName, avatarPath: widget.selectedAvatar),
           ),
         );
       });

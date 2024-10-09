@@ -7,8 +7,10 @@ import 'package:skill_guru/screens/quizz/quizz_result.dart';
 
 class StartQuizz extends StatefulWidget {
   final String result;
+  final String username; 
+  final String avatarPath;
 
-  StartQuizz({required this.result});
+  StartQuizz({required this.result, required this.username, required this.avatarPath});
 
   @override
   _StartQuizzState createState() => _StartQuizzState();
@@ -57,7 +59,7 @@ class _StartQuizzState extends State<StartQuizz> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => QuizResult(score: score),
+            builder: (context) => QuizResult(score: score, username: widget.username, avatarPath: widget.avatarPath),
           ),
         );
       }

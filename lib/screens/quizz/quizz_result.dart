@@ -3,8 +3,10 @@ import 'package:skill_guru/widget/base_layout.dart';
 
 class QuizResult extends StatelessWidget {
   final int score; // Score total de l'utilisateur
+  final String username;
+  final String avatarPath; 
 
-  QuizResult({required this.score});
+  QuizResult({required this.score, required this.username, required this.avatarPath});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,20 @@ class QuizResult extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center, // Centrer verticalement le contenu
           crossAxisAlignment: CrossAxisAlignment.center, // Centrer horizontalement le contenu
           children: <Widget>[
+            ClipOval(
+              child: Image.asset(
+                avatarPath, // Chemin de l'image de l'avatar
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              username,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
             Text(
               'Votre score :',
               style: TextStyle(fontSize: 24), // Taille du texte pour "Votre score :"

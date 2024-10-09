@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:skill_guru/constants/color_constants.dart';
 
 class TimerWidget extends StatefulWidget {
   final int initialTime;
@@ -46,7 +47,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   Widget build(BuildContext context) {
     return Text(
       'Temps restant : $remainingTime secondes',
-      style: TextStyle(fontSize: 24, color: Colors.red),
+      style: TextStyle(fontSize: 24, color: ColorConstants.accentuationColor),
     );
   }
 }
