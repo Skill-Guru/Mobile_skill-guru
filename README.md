@@ -1,6 +1,6 @@
 # Mobile_skill-guru
 
-![Logo](./assets/image/qr-code.png)
+![Logo](./assets/images/qr-code.png)
 
 ## Description
 
@@ -25,7 +25,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 - Dart SDK
 - Un appareil ou un émulateur Android/iOS
 
-![QR Code](./assets/image/qr-code.png)
+![QR Code](./assets/images/qr-code.png)
 
 ## Installation
 
@@ -49,16 +49,15 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
    ```bash
    flutter run
 
-
 ## Structure du projet
 
 Le projet suit la structure standard Flutter avec une séparation claire entre les différentes couches de l'application :
 
 lib/
- ├── models/    # Modèles de données utilisés dans l'application
- ├── screens/   # Pages ou écrans de l'application
- ├── widgets/   # Widgets réutilisables
- └── services/  # Services pour l'interaction avec les API et Firebase
+├── models/    # Modèles de données utilisés dans l'application
+├── screens/   # Pages ou écrans de l'application
+├── widgets/   # Widgets réutilisables
+└── services/  # Services pour l'interaction avec les API et Firebase
 
 ## Contributions
 
