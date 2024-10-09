@@ -83,14 +83,13 @@ Les contributions sont les bienvenues. Pour toute contribution, veuillez :
 
 5. Créer une Pull Request.
 
+## Points à noter :
+
+Si vous avez besoin d'autres modifications, je suis là pour vous aider !
+
 ## Licence
 
 Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
   ```bash
-  Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-
-
-
-### Points à noter :
-Si vous avez besoin d'autres modifications, je suis là pour vous aider !
+  Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails ou pas.
