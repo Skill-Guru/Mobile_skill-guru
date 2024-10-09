@@ -6,7 +6,6 @@ import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/widget/custom_button.dart';
 
 import 'confetti_display.dart';
-import 'quiz_details.dart';
 
 class QuizResult extends StatefulWidget {
   final int score;
@@ -52,12 +51,7 @@ class _QuizResultState extends State<QuizResult> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            ConfettiDisplay(controller: _controllerCenter), // Affichage des confettis
-            QuizDetails(
-              avatarPath: widget.avatarPath,
-              username: widget.username,
-              score: widget.score,
-            ), // Affichage des détails du quiz
+            ConfettiDisplay(controller: _controllerCenter),
             ClipOval(
               child: Image.asset(
                 widget.avatarPath, // Chemin de l'image de l'avatar
