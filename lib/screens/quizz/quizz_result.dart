@@ -71,9 +71,10 @@ class _QuizResultState extends State<QuizResult> {
             CustomButton(
               text: "Retour à la page d'accueil",
               onPressed: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (Route<dynamic> route) => false,
                 );
               },
             ),
