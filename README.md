@@ -59,6 +59,8 @@ lib/
 ├── widgets/   # Widgets réutilisables
 └── services/  # Services pour l'interaction avec les API et Firebase
 
+
+
 ## Contributions
 
 Les contributions sont les bienvenues. Pour toute contribution, veuillez :
@@ -66,18 +68,18 @@ Les contributions sont les bienvenues. Pour toute contribution, veuillez :
 
 2. Créer une nouvelle branche pour votre fonctionnalité (git checkout -b feature/ma-fonctionnalite).
 
-  ```bash
-  git checkout -b feature/ma-fonctionnalite
+   ```bash
+   git checkout -b feature/ma-fonctionnalite
 
 3. Committer vos modifications (git commit -m 'Ajout d'une nouvelle fonctionnalité').
 
-  ```bash
-  git commit -m 'Ajout d'une nouvelle fonctionnalité'
+   ```bash
+   git commit -m 'Ajout d'une nouvelle fonctionnalité'
 
 4. Pusher vers la branche (git push origin feature/ma-fonctionnalite).
 
-  ```bash
-  git push origin feature/ma-fonctionnalite
+   ```bash
+   git push origin feature/ma-fonctionnalite
 
 5. Créer une Pull Request.
 
@@ -85,8 +87,8 @@ Les contributions sont les bienvenues. Pour toute contribution, veuillez :
 
 Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
-```bash
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+  ```bash
+  Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
 
 
