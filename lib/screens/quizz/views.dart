@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/screens/quizz/quiz_model.dart';
+import 'package:skill_guru/screens/quizz/quizz_result.dart';
 
 import 'quiz_service.dart';
 import 'quiz_widget.dart';
@@ -17,11 +18,12 @@ class _StartQuizzState extends State<StartQuizz> {
   List<Quiz> quizzes = [];
   String selectedOption = '';
   int currentQuestionIndex = 0;
+  int score = 0;
 
   @override
   void initState() {
     super.initState();
-    _fetchQuizData(); // Appel pour récupérer les données
+    _fetchQuizData();
   }
 
   Future<void> _fetchQuizData() async {
@@ -39,13 +41,20 @@ class _StartQuizzState extends State<StartQuizz> {
 
   // Fonction pour passer à la question suivante
   void _nextQuestion() {
+    if (selectedOption == quizzes[0].questions[currentQuestionIndex].answer) {
+      score += 100;
+    }
+
     setState(() {
       if (currentQuestionIndex < quizzes[0].questions.length - 1) {
         currentQuestionIndex++; // Incrémente l'index pour la question suivante
         selectedOption = ''; // Réinitialise la réponse sélectionnée
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Quiz terminé !')),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => QuizResult(score: score),
+          ),
         );
       }
     });
