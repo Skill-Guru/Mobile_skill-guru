@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skill_guru/screens/home_screen.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/widget/custom_button.dart';
+import 'package:skill_guru/animations/score.dart';
 
 class QuizResult extends StatelessWidget {
   final int score; // Score total de l'utilisateur
@@ -33,20 +34,8 @@ class QuizResult extends StatelessWidget {
               username,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
-            Text(
-              'Votre score :',
-              style: TextStyle(fontSize: 24), // Taille du texte pour "Votre score :"
-            ),
             SizedBox(height: 20), // Espacement entre les textes
-            Text(
-              '$score points',
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold, // Texte en gras pour le score
-                color: Colors.blue, // Optionnel : tu peux remplacer par une couleur constante si tu en utilises une
-              ),
-            ),
+            ScoreAnimationWidget(score: score),
             SizedBox(height: 20),
             CustomButton(
               text: "Retour à la page d'accueil",

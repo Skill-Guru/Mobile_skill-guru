@@ -15,7 +15,7 @@ class BaseLayout extends StatelessWidget {
         backgroundColor: ColorConstants.backgroundColor,
         centerTitle: true,
         title: Text(title),
-        automaticallyImplyLeading: showBackButton!,
+        automaticallyImplyLeading: showBackButton,
       ),
       backgroundColor: ColorConstants.backgroundColor,
       body: Padding(
