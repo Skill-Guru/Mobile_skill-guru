@@ -1,15 +1,46 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:skill_guru/animations/score.dart';
 import 'package:skill_guru/screens/home_screen.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/widget/custom_button.dart';
-import 'package:skill_guru/animations/score.dart';
 
-class QuizResult extends StatelessWidget {
-  final int score; // Score total de l'utilisateur
+import 'confetti_display.dart';
+import 'quiz_details.dart';
+
+class QuizResult extends StatefulWidget {
+  final int score;
   final String username;
-  final String avatarPath; 
+  final String avatarPath;
 
   QuizResult({required this.score, required this.username, required this.avatarPath});
+
+  @override
+  _QuizResultState createState() => _QuizResultState();
+}
+
+class _QuizResultState extends State<QuizResult> {
+  late ConfettiController _controllerCenter;
+
+  @override
+  void initState() {
+    super.initState();
+    
+    // Initialiser le contrôleur de confettis
+    _controllerCenter = ConfettiController(duration: const Duration(seconds: 10));
+    _controllerCenter.play();
+
+    // Arrêter les confettis après 10 secondes
+    Future.delayed(const Duration(seconds: 10), () {
+      _controllerCenter.stop();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controllerCenter.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +49,18 @@ class QuizResult extends StatelessWidget {
       showBackButton: false,
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centrer verticalement le contenu
-          crossAxisAlignment: CrossAxisAlignment.center, // Centrer horizontalement le contenu
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            ConfettiDisplay(controller: _controllerCenter), // Affichage des confettis
+            QuizDetails(
+              avatarPath: widget.avatarPath,
+              username: widget.username,
+              score: widget.score,
+            ), // Affichage des détails du quiz
             ClipOval(
               child: Image.asset(
-                avatarPath, // Chemin de l'image de l'avatar
+                widget.avatarPath, // Chemin de l'image de l'avatar
                 height: 100,
                 width: 100,
                 fit: BoxFit.cover,
@@ -31,11 +68,11 @@ class QuizResult extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              username,
+              widget.username,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20), // Espacement entre les textes
-            ScoreAnimationWidget(score: score),
+            ScoreAnimationWidget(score: widget.score),
             SizedBox(height: 20),
             CustomButton(
               text: "Retour à la page d'accueil",

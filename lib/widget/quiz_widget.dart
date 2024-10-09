@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skill_guru/widget/custom_button.dart';
-import 'package:skill_guru/models/quiz_model.dart';
 import 'package:skill_guru/constants/color_constants.dart';
+import 'package:skill_guru/models/quiz_model.dart';
+import 'package:skill_guru/widget/custom_button.dart';
 import 'package:skill_guru/widget/timer.dart';
 
 class QuizWidget extends StatelessWidget {
@@ -29,7 +29,7 @@ class QuizWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         TimerWidget(
-          initialTime: 300000000, // Temps pour chaque question
+          initialTime: quizzes[0].totalTimer,
           onTimeUp: onTimeUp, // Que faire quand le temps est écoulé
         ),
         SizedBox(height: 20),
