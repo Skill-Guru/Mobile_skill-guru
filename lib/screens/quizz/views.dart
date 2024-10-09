@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/models/quiz_model.dart';
-import 'package:skill_guru/widget/base_layout.dart';
-import 'package:skill_guru/services/quiz_service.dart';
-import 'package:skill_guru/widget/quiz_widget.dart';
 import 'package:skill_guru/screens/quizz/quizz_result.dart';
+import 'package:skill_guru/services/quiz_service.dart';
+import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/widget/quiz_widget.dart';
 
 class StartQuizz extends StatefulWidget {
   final String result;

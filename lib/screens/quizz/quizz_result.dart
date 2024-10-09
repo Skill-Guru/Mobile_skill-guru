@@ -1,49 +1,59 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 
-class QuizResult extends StatelessWidget {
-  final int score; // Score total de l'utilisateur
+import 'confetti_display.dart';
+import 'quiz_details.dart';
+
+class QuizResult extends StatefulWidget {
+  final int score;
   final String username;
-  final String avatarPath; 
+  final String avatarPath;
 
   QuizResult({required this.score, required this.username, required this.avatarPath});
 
   @override
+  _QuizResultState createState() => _QuizResultState();
+}
+
+class _QuizResultState extends State<QuizResult> {
+  late ConfettiController _controllerCenter;
+
+  @override
+  void initState() {
+    super.initState();
+    
+    // Initialiser le contrôleur de confettis
+    _controllerCenter = ConfettiController(duration: const Duration(seconds: 10));
+    _controllerCenter.play();
+
+    // Arrêter les confettis après 10 secondes
+    Future.delayed(const Duration(seconds: 10), () {
+      _controllerCenter.stop();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controllerCenter.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BaseLayout(
-      title: 'Résultat du Quiz', // Titre de l'AppBar
+      title: 'Résultat du Quiz',
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centrer verticalement le contenu
-          crossAxisAlignment: CrossAxisAlignment.center, // Centrer horizontalement le contenu
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            ClipOval(
-              child: Image.asset(
-                avatarPath, // Chemin de l'image de l'avatar
-                height: 100,
-                width: 100,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              username,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Votre score :',
-              style: TextStyle(fontSize: 24), // Taille du texte pour "Votre score :"
-            ),
-            SizedBox(height: 20), // Espacement entre les textes
-            Text(
-              '$score points',
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold, // Texte en gras pour le score
-                color: Colors.blue, // Optionnel : tu peux remplacer par une couleur constante si tu en utilises une
-              ),
-            ),
+            ConfettiDisplay(controller: _controllerCenter), // Affichage des confettis
+            QuizDetails(
+              avatarPath: widget.avatarPath,
+              username: widget.username,
+              score: widget.score,
+            ), // Affichage des détails du quiz
           ],
         ),
       ),
