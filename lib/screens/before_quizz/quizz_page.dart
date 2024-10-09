@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/constants/color_constants.dart';
+import 'package:skill_guru/screens/qrcode/scanner.dart';
+import 'package:skill_guru/screens/quizz/views.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/widget/custom_button.dart';
-import 'package:skill_guru/screens/quizz/views.dart';
-import 'package:skill_guru/screens/qrcode/scanner.dart';
 
 class QuizScreen extends StatefulWidget {
   final String selectedAvatar;
@@ -42,6 +42,17 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+     // Si le résultat est déjà disponible, naviguer automatiquement vers StartQuizz
+    if (_result != null) {
+      Future.microtask(() {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => StartQuizz(result: _result!),
+          ),
+        );
+      });
+    }
+    
     return BaseLayout(
       title: "Résumé",
       child: Padding(
