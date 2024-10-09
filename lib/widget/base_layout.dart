@@ -4,23 +4,25 @@ import 'package:skill_guru/constants/color_constants.dart';
 class BaseLayout extends StatelessWidget {
   final Widget child;
   final String title;
+  final bool showBackButton;
 
-  BaseLayout({required this.child, required this.title}); // Ajout d'un titre pour l'AppBar
+  BaseLayout({required this.child, required this.title, this.showBackButton = true}); // Ajout d'un titre pour l'AppBar
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Ajout de l'AppBar
       appBar: AppBar(
-        backgroundColor: ColorConstants.backgroundColor, // Couleur de l'AppBar
-        title: Text(title), // Titre de la page (dynamique)
+        backgroundColor: ColorConstants.backgroundColor,
+        centerTitle: true,
+        title: Text(title),
+        automaticallyImplyLeading: showBackButton!,
       ),
-      backgroundColor: ColorConstants.backgroundColor, // Couleur de fond de la page
+      backgroundColor: ColorConstants.backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.all(30.0), // Padding de 30
+        padding: const EdgeInsets.all(30.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centre le contenu verticalement
-          crossAxisAlignment: CrossAxisAlignment.center, // Centre le contenu horizontalement
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: ClipOval(

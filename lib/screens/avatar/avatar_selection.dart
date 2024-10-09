@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skill_guru/screens/before_quizz/quizz_page.dart';
 import 'package:skill_guru/widget/base_layout.dart';
 import 'package:skill_guru/constants/color_constants.dart';
+import 'package:skill_guru/constants/avatars.dart';
 
 class AvatarSelectionScreen extends StatefulWidget {
   final String userName; // Stocker le nom de l'utilisateur
@@ -14,19 +15,6 @@ class AvatarSelectionScreen extends StatefulWidget {
 
 class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
   String selectedAvatar = 'assets/images/1.jpg'; // Avatar par défaut
-
-  // Liste des avatars disponibles
-  List<String> avatarList = [
-    'assets/images/1.jpg',
-    'assets/images/2.jpg',
-    'assets/images/3.jpg',
-    'assets/images/4.jpg',
-    'assets/images/5.jpg',
-    'assets/images/6.jpg',
-    'assets/images/7.jpg',
-    'assets/images/8.jpg',
-    'assets/images/9.jpg',
-  ];
 
   @override
   Widget build(BuildContext context) {

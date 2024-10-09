@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:skill_guru/screens/home_screen.dart';
 import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/widget/custom_button.dart';
 
 class QuizResult extends StatelessWidget {
   final int score; // Score total de l'utilisateur
@@ -12,6 +14,7 @@ class QuizResult extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseLayout(
       title: 'Résultat du Quiz', // Titre de l'AppBar
+      showBackButton: false,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, // Centrer verticalement le contenu
@@ -43,6 +46,16 @@ class QuizResult extends StatelessWidget {
                 fontWeight: FontWeight.bold, // Texte en gras pour le score
                 color: Colors.blue, // Optionnel : tu peux remplacer par une couleur constante si tu en utilises une
               ),
+            ),
+            SizedBox(height: 20),
+            CustomButton(
+              text: "Retour à la page d'accueil",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
             ),
           ],
         ),

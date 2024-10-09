@@ -84,7 +84,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
             // Display the scanned result if available
             Text(
-              _result ?? 'No result',
+              _result ?? 'Pas de Qr code scanné',
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 20),
