@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skill_guru/constants/color_constants.dart';
 import 'package:skill_guru/screens/avatar/avatar_selection.dart';
-import 'package:skill_guru/screens/home_screen.dart';
 import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/widget/custom_button.dart';
 
 class NameSelect extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController(); // Contrôleur pour obtenir le nom de l'utilisateur
@@ -19,12 +19,16 @@ class NameSelect extends StatelessWidget {
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                labelStyle: TextStyle(color: ColorConstants.primaryColor), // Couleur du label
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color : ColorConstants.primaryColor),
+                ),
                 labelText: 'Votre pseudo',
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
+              text: 'Valider',
               onPressed: () {
                 String userName = _nameController.text;
                 
@@ -65,12 +69,6 @@ class NameSelect extends StatelessWidget {
                   );
                 }
               },
-              child: Text('Valider'),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12), // Border radius de 12px
-                ),
-              ),
             ),
           ],
         ),
@@ -82,10 +80,4 @@ class NameSelect extends StatelessWidget {
     final alphanumeric = RegExp(r'^[a-zA-Z0-9]+$');
     return alphanumeric.hasMatch(str);
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: HomeScreen(),
-  ));
 }

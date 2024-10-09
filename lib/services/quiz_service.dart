@@ -1,7 +1,6 @@
-import 'dart:convert'; // Pour le décodage JSON
-import 'dart:io'; // Pour les requêtes réseau
-
-import 'quiz_model.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:skill_guru/models/quiz_model.dart';
 
 class QuizService {
   Future<List<Quiz>> fetchQuizData() async {

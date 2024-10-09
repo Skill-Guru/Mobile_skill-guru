@@ -57,12 +57,12 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: selectedAvatar == avatarList[index]
-                              ? ColorConstants.primaryColor // Si cet avatar est sélectionné, la bordure est bleue
-                              : ColorConstants.backgroundColor, // Sinon, elle est grise
+                              ? ColorConstants.primaryColor
+                              : ColorConstants.backgroundColor,
                           width: 3,
                         ),
                       ),
-                      child: Image.asset(avatarList[index]), // Affichage de l'avatar
+                      child: Image.asset(avatarList[index]),
                     ),
                   );
                 },
@@ -107,7 +107,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                   },
                   backgroundColor: ColorConstants.secondaryColor, // Couleur de fond du bouton
                   child: Icon(Icons.arrow_forward, color: ColorConstants.backgroundColor, ),
-                  splashColor: ColorConstants.accentuationColor, // Icône de flèche
+                  splashColor: ColorConstants.accentuationColor,
                 ),
               ],
             ),

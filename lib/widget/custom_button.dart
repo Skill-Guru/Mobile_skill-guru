@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:skill_guru/constants/color_constants.dart'; // Assurez-vous d'importer vos constantes de couleurs
 
 class CustomButton extends StatelessWidget {
-  final String text; // Texte du bouton
-  final VoidCallback onPressed; // Fonction appelée lors de l'appui sur le bouton
-  final Color buttonColor; // Couleur de fond du bouton
-  final Color textColor; // Couleur du texte
+  final String text;
+  final VoidCallback onPressed; 
+  final Color buttonColor; 
+  final Color textColor;
 
   // Constructeur du bouton réutilisable
   CustomButton({
     required this.text,
     required this.onPressed,
-    this.buttonColor = ColorConstants.secondaryColor, // Couleur par défaut du bouton
-    this.textColor = ColorConstants.primaryColor, // Couleur par défaut du texte
+    this.buttonColor = ColorConstants.secondaryColor,
+    this.textColor = ColorConstants.primaryColor,
   });
 
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:skill_guru/screens/quizz/quiz_model.dart';
+import 'package:skill_guru/models/quiz_model.dart';
+import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/services/quiz_service.dart';
+import 'package:skill_guru/widget/quiz_widget.dart';
 import 'package:skill_guru/screens/quizz/quizz_result.dart';
-
-import 'quiz_service.dart';
-import 'quiz_widget.dart';
 
 class StartQuizz extends StatefulWidget {
   final String result;
@@ -23,7 +23,7 @@ class _StartQuizzState extends State<StartQuizz> {
   @override
   void initState() {
     super.initState();
-    _fetchQuizData();
+    _fetchQuizData(); // Appel pour récupérer les données
   }
 
   Future<void> _fetchQuizData() async {
@@ -39,12 +39,16 @@ class _StartQuizzState extends State<StartQuizz> {
     });
   }
 
+  void _onTimeUp() {
+    _nextQuestion();
+  }
+
   // Fonction pour passer à la question suivante
   void _nextQuestion() {
     if (selectedOption == quizzes[0].questions[currentQuestionIndex].answer) {
       score += 100;
     }
-
+ 
     setState(() {
       if (currentQuestionIndex < quizzes[0].questions.length - 1) {
         currentQuestionIndex++; // Incrémente l'index pour la question suivante
@@ -62,12 +66,10 @@ class _StartQuizzState extends State<StartQuizz> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Début du quizz'),
-      ),
-      body: quizzes.isEmpty
-          ? Center(child: CircularProgressIndicator())
+    return BaseLayout(
+      title: 'Début du quizz', // Utilisation du titre dynamique pour l'AppBar
+      child: quizzes.isEmpty
+          ? Center(child: CircularProgressIndicator()) // Loader si les données sont vides
           : Padding(
               padding: const EdgeInsets.all(16.0),
               child: QuizWidget(
@@ -76,16 +78,10 @@ class _StartQuizzState extends State<StartQuizz> {
                 selectedOption: selectedOption,
                 currentQuestionIndex: currentQuestionIndex, // Passer l'index courant
                 onOptionSelected: _onOptionSelected,
-                onValidate: _nextQuestion, // Appelle _nextQuestion quand une réponse est validée
+                onValidate: _nextQuestion, // Appelle _nextQuestion quand une réponse est validée,
+                onTimeUp: _onTimeUp,
               ),
             ),
     );
   }
-}
-
-
-void main() {
-  runApp(MaterialApp(
-    home: StartQuizz(result: 'Aucun résultat'),
-  ));
 }

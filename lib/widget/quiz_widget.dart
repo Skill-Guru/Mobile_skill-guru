@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-
-import 'quiz_model.dart';
+import 'package:skill_guru/widget/custom_button.dart';
+import 'package:skill_guru/models/quiz_model.dart';
+import 'package:skill_guru/constants/color_constants.dart';
+import 'package:skill_guru/widget/timer.dart';
 
 class QuizWidget extends StatelessWidget {
   final String result;
   final List<Quiz> quizzes;
   final String selectedOption;
-  final int currentQuestionIndex; // Ajouter un paramètre pour l'index de la question actuelle
+  final int currentQuestionIndex; // Index de la question actuelle
   final Function(String) onOptionSelected;
-  final VoidCallback onValidate; // Ajoute un callback pour valider la réponse
+  final VoidCallback onValidate; // Callback pour valider la réponse
+  final VoidCallback onTimeUp; // Callback quand le temps est écoulé
 
   QuizWidget({
     required this.result,
@@ -17,6 +20,7 @@ class QuizWidget extends StatelessWidget {
     required this.currentQuestionIndex,
     required this.onOptionSelected,
     required this.onValidate,
+    required this.onTimeUp,
   });
 
   @override
@@ -24,6 +28,11 @@ class QuizWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        TimerWidget(
+          initialTime: 30, // Temps pour chaque question
+          onTimeUp: onTimeUp, // Que faire quand le temps est écoulé
+        ),
+        SizedBox(height: 20),
 
         // Afficher la question en fonction de l'index courant
         Text(
@@ -38,6 +47,7 @@ class QuizWidget extends StatelessWidget {
           return RadioListTile<String>(
             title: Text(option),
             value: option,
+            activeColor: ColorConstants.primaryColor,
             groupValue: selectedOption,
             onChanged: (String? value) {
               onOptionSelected(value!); // Gère la sélection d'une option
@@ -47,20 +57,20 @@ class QuizWidget extends StatelessWidget {
 
         SizedBox(height: 20),
 
-        ElevatedButton(
+        CustomButton(
+          text: 'Valider la réponse',
           onPressed: () {
-            if(!selectedOption.isNotEmpty) {
+            if (!selectedOption.isNotEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Veuillez sélectionner une réponse.')),
               );
-            }
-            else{
+            } else {
               onValidate();
             }
           },
-          child: Text('Valider la réponse'),
         ),
       ],
     );
   }
 }
+
