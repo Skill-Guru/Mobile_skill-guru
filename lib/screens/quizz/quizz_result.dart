@@ -1,6 +1,9 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:skill_guru/animations/score.dart';
+import 'package:skill_guru/screens/home_screen.dart';
 import 'package:skill_guru/widget/base_layout.dart';
+import 'package:skill_guru/widget/custom_button.dart';
 
 import 'confetti_display.dart';
 import 'quiz_details.dart';
@@ -42,7 +45,8 @@ class _QuizResultState extends State<QuizResult> {
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
-      title: 'Résultat du Quiz',
+      title: 'Résultat du Quiz', // Titre de l'AppBar
+      showBackButton: false,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -54,6 +58,31 @@ class _QuizResultState extends State<QuizResult> {
               username: widget.username,
               score: widget.score,
             ), // Affichage des détails du quiz
+            ClipOval(
+              child: Image.asset(
+                widget.avatarPath, // Chemin de l'image de l'avatar
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              widget.username,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20), // Espacement entre les textes
+            ScoreAnimationWidget(score: widget.score),
+            SizedBox(height: 20),
+            CustomButton(
+              text: "Retour à la page d'accueil",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
           ],
         ),
       ),
